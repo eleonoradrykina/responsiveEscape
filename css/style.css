@@ -30,12 +30,14 @@ img {
   --primary: #3f51b5;
 
   --yellow: rgb(255, 255, 76);
-
   --blue: rgb(113, 167, 176);
+
   --floor: rgb(68, 59, 54);
   --ceiling: rgb(97, 70, 23);
   --ceiling-btw: rgb(75, 53, 16);
   --ceiling-shadow: rgb(52, 40, 2);
+
+  --white: rgba(239, 223, 211, 0.8);
 
   --fs-l: clamp(1rem, 1rem + 2cqw, 2.5rem);
 }
@@ -43,11 +45,37 @@ img {
 .main {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 span {
   display: none;
 }
+
+main::after {
+  content: "Oh no where am I? Seems like some kind of corridor... The door is locked and it has some kind of code on it. I need to find a way out of here!";
+  font-size: clamp(0.7rem, 0.7rem + 1cqw, 1.25rem);
+  position: absolute;
+  display: block;
+  background-color: var(--white);
+  width: 80cqw;
+  height: 10cqh;
+  margin: 0 auto;
+  bottom: 3%;
+  left: 10%;
+  z-index: 20;
+  border: 0.2rem solid var(--ceiling);
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+  overflow: scroll;
+}
+
+main:has(.wall--back:hover)::after {
+  content: "I think I can see something behind the wall...";
+
+}
+
+/* THE CORRIDOR */
 
 .corridor {
   background: var(--dark);
@@ -73,8 +101,6 @@ span {
   grid-area: ceiling;
   background: linear-gradient(to top, var(--ceiling-shadow), var(--ceiling-btw)20%, var(--ceiling)55%);
 }
-
-
 
 .wall--top-right {
   grid-area: wall--top-right;
@@ -114,6 +140,58 @@ span {
 .floor {
   grid-area: floor;
   background: var(--floor);
+}
+
+/*DETAILS*/
+
+input {
+  appearance: none;
+}
+
+.lamps-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.lamp-label {
+  display: block;
+  position: relative;
+  width: 5cqw;
+  height: 5cqw;
+  background-color: rgb(9, 55, 63);
+  border-radius: 10% 27% 25% / 10% 10% 60% 60%;
+}
+
+.lamp-label::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 3cqw;
+  height: 2cqw;
+  border-left: 0.3rem solid var(--floor);
+  border-bottom: 0.3rem solid var(--floor);
+  mix-blend-mode: darken;
+  border-radius: 10px;
+  bottom: -15%;
+  left: 50%;
+}
+
+.lamp-label:has(input:checked)::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 10cqw;
+  height: 10cqw;
+  background-color: var(--yellow);
+  filter: blur(10px);
+  border-radius: 30% 50% 30% 10%;
+  bottom: 50%;
+  rotate: -40deg;
+  left: -40%;
+  mix-blend-mode: hard-light;
 }
 
 .video-wrapper {
@@ -209,7 +287,6 @@ video {
       "wall--left wall--left wall--back wall--back wall--right wall--right"
       "wall--left wall--left wall--back wall--back wall--right wall--right"
       "wall--bottom-left wall--bottom-left floor floor wall--bottom-right wall--bottom-right";
-
   }
 }
 
@@ -220,6 +297,5 @@ video {
       "wall--left wall--left wall--left wall--back wall--back wall--right"
       "wall--left wall--left wall--left wall--back wall--back wall--right"
       "wall--bottom-left wall--bottom-left wall--bottom-left floor floor wall--bottom-right";
-
   }
 }
