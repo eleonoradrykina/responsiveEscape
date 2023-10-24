@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
   background-color: rgb(255, 183, 251);
+  cursor: url("../assets/cursor.png"), auto;
 }
 
 *,
@@ -32,6 +33,9 @@ img {
   --yellow: rgb(255, 255, 76);
   --blue: rgb(113, 167, 176);
 
+  /*lamp*/
+  --green: rgb(9, 55, 63);
+
   --floor: rgb(68, 59, 54);
   --ceiling: rgb(97, 70, 23);
   --ceiling-btw: rgb(75, 53, 16);
@@ -39,7 +43,13 @@ img {
 
   --white: rgba(239, 223, 211, 0.8);
 
+
+
   --fs-l: clamp(1rem, 1rem + 2cqw, 2.5rem);
+}
+
+label {
+  cursor: url("../assets/look.png"), auto;
 }
 
 .main {
@@ -70,9 +80,24 @@ main::after {
   overflow: scroll;
 }
 
+/* HINTS*/
+
 main:has(.wall--back:hover)::after {
   content: "I think I can see something behind the wall...";
+}
 
+main:has(.lamp-label:hover)::after {
+  content: "Switch on the light by clicking on the lamp";
+}
+
+main:has(.book:hover)::after {
+  content: "It's some sort of book... I can't read it, there's not enough contrast between the text and the background";
+}
+
+@media (prefers-contrast: more) {
+  main:has(.book:hover)::after {
+    content: "I can see some letters now... Bring me closer to the print";
+  }
 }
 
 /* THE CORRIDOR */
@@ -142,7 +167,9 @@ main:has(.wall--back:hover)::after {
   background: var(--floor);
 }
 
-/*DETAILS*/
+/*-------DETAILS------*/
+
+/*Lamps*/
 
 input {
   appearance: none;
@@ -161,7 +188,7 @@ input {
   position: relative;
   width: 5cqw;
   height: 5cqw;
-  background-color: rgb(9, 55, 63);
+  background-color: var(--green);
   border-radius: 10% 27% 25% / 10% 10% 60% 60%;
 }
 
@@ -191,9 +218,29 @@ input {
   bottom: 50%;
   rotate: -40deg;
   left: -40%;
-  mix-blend-mode: hard-light;
+  mix-blend-mode: lighten;
+
 }
 
+/*Book*/
+
+.book {
+  display: block;
+  position: relative;
+  width: 5cqw;
+  height: 7cqw;
+
+  rotate: 50deg;
+  border-radius: 40% 3% 3% 3%;
+  border: var(--dark) 0.2rem solid;
+  margin-left: auto;
+
+  background: radial-gradient(circle, transparent 20%, #f3e9d4 20%, #f3e9d4 80%, transparent 80%, transparent) 0% 0% / 40px 40px, radial-gradient(circle, transparent 20%, #f3e9d4 20%, #f3e9d4 80%, transparent 80%, transparent) 20px 20px / 40px 40px, linear-gradient(#000277 2px, transparent 2px) 0px -1px / 20px 20px, linear-gradient(90deg, #000277 2px, #f3e9d4 2px) -1px 0px / 20px 20px #f3e9d4;
+  background-color: #f3e9d4;
+  background-size: 40px 40px, 40px 40px, 20px 20px, 20px 20px;
+}
+
+/*video*/
 .video-wrapper {
   display: none;
   grid-row: 1;
@@ -214,6 +261,8 @@ video {
     --ceiling-btw: rgb(179, 174, 166);
     --ceiling-shadow: rgb(124, 123, 123);
 
+    --green: var(--ceiling-btw);
+
   }
 
   .seven {
@@ -229,6 +278,7 @@ video {
   }
 }
 
+/* STEP 4 */
 @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
   .video-wrapper {
     position: relative;
@@ -253,7 +303,7 @@ video {
   }
 }
 
-@media (prefers-contrast: more) and (prefers-color-scheme: dark) and (min-width: 800px) and (max-width: 950px) {
+@media (prefers-color-scheme: dark) and (min-width: 800px) and (max-width: 950px) {
   video {
     display: block;
   }
@@ -282,8 +332,7 @@ video {
 
 @media screen and (max-width: 50em) {
   .corridor {
-    grid-template-areas:
-      "wall--top-left wall--top-left ceiling ceiling wall--top-right wall--top-right"
+    grid-template-areas: "wall--top-left wall--top-left ceiling ceiling wall--top-right wall--top-right"
       "wall--left wall--left wall--back wall--back wall--right wall--right"
       "wall--left wall--left wall--back wall--back wall--right wall--right"
       "wall--bottom-left wall--bottom-left floor floor wall--bottom-right wall--bottom-right";
@@ -292,8 +341,7 @@ video {
 
 @media screen and (max-width: 35em) {
   .corridor {
-    grid-template-areas:
-      "wall--top-left wall--top-left wall--top-left ceiling ceiling  wall--top-right"
+    grid-template-areas: "wall--top-left wall--top-left wall--top-left ceiling ceiling  wall--top-right"
       "wall--left wall--left wall--left wall--back wall--back wall--right"
       "wall--left wall--left wall--left wall--back wall--back wall--right"
       "wall--bottom-left wall--bottom-left wall--bottom-left floor floor wall--bottom-right";
