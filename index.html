@@ -18,6 +18,22 @@
     <h1 class="visually-hidden">Escape Room</h1>
   </header>
   <main>
+    <article class="script">
+      <p> In the land of Erathia, to unlock the ancient portal, one must decipher a 4-rune combination. Heed your inner
+        oracle and
+        remain vigilant in your surroundings. The spirits whisper the first rune to you: it is the number <em>5</em>.
+      </p>
+      <p> To
+        proceed
+        on your
+        quest, return to the magical scrying screen and adjust its contrast as it was before. For the next rune, invoke
+        the spell to
+        <em>reverse the
+          spectrum of color.</em>
+      </p>
+      <p>Remember! Once you close this scroll, it will be gone forever.</p>
+      <label class="script-label"> X <input type="checkbox" class="script-box" /></label>
+    </article>
     <article class="corridor">
       <div class="wall wall--top-left"></div>
       <div class="ceiling"></div>
@@ -29,23 +45,31 @@
         <div class="video-wrapper">
           <video src="../assets/marvin.mov" height="300px" autoplay muted loop></video>
         </div>
+        <span class="two">2</span>
         <span class="seven">7</span>
       </div>
 
       <div class="wall wall--right">
+        <label class="lock">
+          <form action="" class="code">
+            <input type="text" placeholder="0" pattern="5" required size="1">
+            <input type="text" placeholder="0" pattern="2" required size="1">
+            <input type="text" placeholder="0" pattern="3" required size="1">
+            <input type="text" placeholder="0" pattern="7" required size="1">
+            <button type="submit">Send</button>
+          </form><input type="checkbox" class="lock-box" />
+        </label>
         <div class="lamps-wrapper">
-          <label class="lamp-label"><input type="checkbox" class="lamp-box" name="scales" /></label>
-          <label class="lamp-label"><input type="checkbox" class="lamp-box" name="scales" checked /></label>
-          <label class="lamp-label"><input type="checkbox" class="lamp-box" name="scales" /></label>
+          <label class="lamp-label"><input type="checkbox" class="lamp-box" /></label>
+          <label class="lamp-label"><input type="checkbox" class="lamp-box" checked /></label>
+          <label class="lamp-label"><input type="checkbox" class="lamp-box" /></label>
         </div>
       </div>
       <div class="wall wall--bottom-left"></div>
-      <div class="floor"></div>
+      <div class="floor">
+        <label class="book"><input type="checkbox" class="book-box"></label>
+      </div>
       <div class="wall wall--bottom-right"> </div>
-
-      <span class="eight">8</span>
-      <span class="nine">9</span>
-      <span class="zero">0</span>
 
     </article>
 
