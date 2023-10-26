@@ -80,7 +80,7 @@ span {
 }
 
 main::after {
-  content: "Oh no where am I? Seems like some kind of corridor... The door is locked and it has some kind of code on it. I need to find a way out of here!";
+  content: "Where have I been transported? It appears to be a labyrinthine passageway... The portal is closed by an enigmatic cipher. I must decipher its secret and escape this confinement !";
   font-size: clamp(0.7rem, 0.7rem + 1cqw, 1.25rem);
   position: absolute;
   display: block;
@@ -104,20 +104,20 @@ main:has(.wall--back:hover)::after {
 }
 
 main:has(.lamp-label:hover)::after {
-  content: "Switch on the light by clicking on the lamp";
+  content: "Summon the light by clicking the enchanted lantern.";
 }
 
 main:has(.book:hover)::after {
-  content: "It's some sort of book... I can't read it, there's not enough contrast between the text and the background";
+  content: "It appears to be a book... I can't read it, there's not enough contrast between the text and the background";
 }
 
 main:has(.lock:hover)::after {
-  content: "There;s some kind of 4-digit lock on the door... I need to find the code. click to see more";
+  content: "A portal stands sealed with a 4-rune combination... I need to find the code. click to see more";
 }
 
 @media (prefers-contrast: more) {
   main:has(.book:hover)::after {
-    content: "I can see some letters now... Bring me closer to the print";
+    content: "Ancient letters begin to reveal themselves... Put the print into force to see better!";
   }
 }
 
@@ -355,23 +355,56 @@ main:has(.script-box:checked) .script {
 }
 
 /*Enter code*/
-/* CHECK THIS!!!!!! */
 
-.lock:has(input:checked) {
+.lock:has(.lock-box:checked) {
   animation: none;
   transform: rotate(0deg);
 }
 
-.main:has(.lock-box:checked) .code {
+main:has(.lock-box:checked) .code {
   display: block;
-  width: 10rem;
-  height: 10rem;
+  position: absolute;
+  z-index: 20;
+  border: 2rem solid var(--red);
+  border-radius: 10%;
+  width: 20rem;
+  height: 14rem;
+  padding: 2rem;
+  left: 30%;
+  top: 50%;
+  font-size: 1.5rem;
+  background-color: #d8d8d8;
+  text-align: center;
+}
+
+main:has(.lock-box:checked) .code__input {
+  font-size: 2rem;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  color: rgb(0, 186, 3);
+  text-align: center;
+  border: none;
+  border-bottom: rgb(0, 139, 26) 0.2rem solid;
+}
+
+.code::after {
+  content: "We won! I am FREE!";
+  display: block;
+  position: absolute;
+  margin-left: -2rem;
+  margin-top: 2rem;
+  width: 100%;
+  text-align: center;
 }
 
 .code:has(:invalid)::after {
   content: "the code is not correct...";
-  display: block;
-  position: absolute;
+}
+
+main:has(.lock-box:checked) .code__input:invalid {
+  color: var(--red);
+  border-bottom: var(--red) 0.2rem solid;
 }
 
 /*-------------END OF DETAILS---------------------*/
@@ -407,13 +440,18 @@ main:has(.script-box:checked) .script {
 
 /* STEP 2*/
 
-@media (inverted-colors: inverted) {
+@media (forced-colors: active) {
   .two {
     display: block;
-    color: red;
-
-    font-weight: 6rem;
+    color: rgb(0, 0, 0) d;
+    font-size: 15rem;
+    opacity: 1;
   }
+
+  main::after {
+    content: "Great! The second rune is revealing itself! Memorize it before it disappears! But this is too bright, I prefer to go into the darkness...";
+  }
+
 }
 
 /* STEP 3 */
@@ -432,6 +470,10 @@ main:has(.script-box:checked) .script {
 
   .seven {
     display: block;
+  }
+
+  main::after {
+    content: "The darkness revealed depth of the corridor, I think I can see something! Help me to look from another perspective by adjusting the width.";
   }
 }
 
@@ -470,7 +512,7 @@ main:has(.script-box:checked) .script {
   }
 
   main::after {
-    content: "We have another rune! It's 7! Now we need to slow down this monster!";
+    content: "Another rune! Now we have part of combination: 527... Now we need to slow down this monster!";
   }
 }
 
@@ -478,16 +520,16 @@ main:has(.script-box:checked) .script {
 
 @media (prefers-reduced-motion: reduce) {
   main::after {
-    content: "That was tiring! I feel like I need to lie down horizontally...";
+    content: "Such exhaustion weighs upon me! Set me upright... Hold me as you would hold a portrait!";
+
   }
 
-}
+  @media (prefers-reduced-motion: reduce) and (orientation: portrait) {
+    main::after {
+      content: "The vision just came to me.. The last rune is 3. The combination is 5273!";
+    }
 
-@media (prefers-reduced-motion: reduce) and (orientation: landscape) {
-  main::after {
-    content: "The vision just came to me.. The last rune is 3";
   }
-
 }
 
 /* @container article (min-width: 30em) {}
