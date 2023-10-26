@@ -411,7 +411,8 @@ main:has(.script-box:checked) .script {
   .two {
     display: block;
     color: red;
-    font-weight: 5rem;
+
+    font-weight: 6rem;
   }
 }
 
