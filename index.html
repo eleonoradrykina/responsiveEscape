@@ -28,15 +28,16 @@
         on your
         quest, return to the magical scrying screen and adjust its contrast as it was before. For the next rune, invoke
         the spell to
-        <em>reverse the
-          spectrum of color.</em>
+        <em>put colors into force.</em>
       </p>
       <p>Remember! Once you close this scroll, it will be gone forever.</p>
       <label class="script-label"> X <input type="checkbox" class="script-box" /></label>
     </article>
     <article class="corridor">
       <div class="wall wall--top-left"></div>
-      <div class="ceiling"></div>
+      <div class="ceiling">
+        <span class="two">2</span>
+      </div>
       <div class="lamp"></div>
       <div class="wall wall--top-right"></div>
       <div class="wall wall--left">
@@ -45,20 +46,19 @@
         <div class="video-wrapper">
           <video src="../assets/marvin.mov" height="300px" autoplay muted loop></video>
         </div>
-        <span class="two">2</span>
         <span class="seven">7</span>
       </div>
 
       <div class="wall wall--right">
         <label class="lock">
-          <form action="" class="code">
-            <input type="text" placeholder="0" pattern="5" required size="1">
-            <input type="text" placeholder="0" pattern="2" required size="1">
-            <input type="text" placeholder="0" pattern="3" required size="1">
-            <input type="text" placeholder="0" pattern="7" required size="1">
-            <button type="submit">Send</button>
-          </form><input type="checkbox" class="lock-box" />
+          <input type="checkbox" class="lock-box" />
         </label>
+        <form action="" class="code">
+          <input class="code__input" type="text" placeholder="0" pattern="5" required size="1">
+          <input class="code__input" type="text" placeholder="0" pattern="2" required size="1">
+          <input class="code__input" type="text" placeholder="0" pattern="3" required size="1">
+          <input class="code__input" type="text" placeholder="0" pattern="7" required size="1">
+        </form>
         <div class="lamps-wrapper">
           <label class="lamp-label"><input type="checkbox" class="lamp-box" /></label>
           <label class="lamp-label"><input type="checkbox" class="lamp-box" checked /></label>
@@ -70,11 +70,8 @@
         <label class="book"><input type="checkbox" class="book-box"></label>
       </div>
       <div class="wall wall--bottom-right"> </div>
-
     </article>
-
   </main>
-  <!-- <script src="js/script.js"></script> -->
 </body>
 
 </html>
