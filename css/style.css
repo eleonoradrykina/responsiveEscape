@@ -121,6 +121,12 @@ main:has(.lock:hover)::after {
   }
 }
 
+@media print and (prefers-contrast: more) {
+  main:has(.book:hover)::after {
+    content: "Click on the script to read it";
+  }
+}
+
 /* THE CORRIDOR */
 
 .corridor {
@@ -231,6 +237,7 @@ input {
   content: '';
   display: block;
   position: absolute;
+  z-index: 10;
   width: 10cqw;
   height: 10cqw;
   background-color: var(--yellow);
@@ -521,25 +528,33 @@ main:has(.lock-box:checked) .code__input:invalid {
 @media (prefers-reduced-motion: reduce) {
   main::after {
     content: "Such exhaustion weighs upon me! Set me upright... Hold me as you would hold a portrait!";
-
   }
 
-  @media (prefers-reduced-motion: reduce) and (orientation: portrait) {
-    main::after {
-      content: "The vision just came to me.. The last rune is 3. The combination is 5273!";
-    }
+  .three {
+    display: block;
+  }
 
+  .seven {
+    opacity: 0;
+  }
+
+  video {
+    display: none;
   }
 }
 
-/* @container article (min-width: 30em) {}
+@media (prefers-reduced-motion: reduce) and (orientation: portrait) {
+  main::after {
+    content: "The vision just came to me.. The last rune is 3. The combination is 5273!";
+  }
 
-@container article (min-width: 55em) {}
+  .three {
+    opacity: 1;
+  }
 
-@media screen and (min-width: 40em) {}
+}
 
-@media screen and (min-width: 60em) {}
-*/
+
 
 /* CHANGE OF PERSPECTIVE */
 @media (max-width: 50em) {
